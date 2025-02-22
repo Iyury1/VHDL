@@ -13,14 +13,15 @@ RUN apt-get update -y && \
     curl \
     build-essential \
     make \
+    tar \
     gnat
 
 # Use the argument inside a RUN command
 RUN if [ "$CLONE" = "true" ]; then \
       echo "CLONE is true, installing extra package..."; \
-      curl https://github.com/gcc-mirror/gcc/archive/refs/tags/releases/gcc-11.5.0.tar.gz
-      tar -xf gcc-11.5.0.tar.gz
-      git clone https://github.com/ghdl/ghdl.git
+      curl https://github.com/gcc-mirror/gcc/archive/refs/tags/releases/gcc-11.5.0.tar.gz ; \
+      tar -xf gcc-11.5.0.tar.gz; \
+      git clone https://github.com/ghdl/ghdl.git; \
     else \
       echo "CLONE is false, skipping extra package installation."; \
     fi
