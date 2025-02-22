@@ -1,10 +1,15 @@
 CONTAINER_NAME=iany/vhdl:latest
 
-.PHONY: docker_build docker_run docker_run_hostv
+.PHONY: docker_build docker_build_nc docker_run docker_run_hostv
 
 docker_build:
 		docker build \
     -t $(CONTAINER_NAME) .
+
+docker_build_nc:
+		docker build \
+		--no-cache \
+    	-t $(CONTAINER_NAME) .
 
 docker_run:
 		docker run --rm -it --privileged $(CONTAINER_NAME) bash
